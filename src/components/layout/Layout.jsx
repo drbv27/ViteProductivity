@@ -11,7 +11,7 @@ const Layout = ({usuario,...props}) => {
   //console.log(`usuario Layout: ${usuario}`)
   return (
     <>
-      <Navbar />
+      <Navbar usuario={usuario}/>
       <Header usuario={usuario}/>
       <PrincipalC>{props.children}</PrincipalC>
 

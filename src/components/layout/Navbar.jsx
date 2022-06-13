@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartArea, faHouse } from "@fortawesome/free-solid-svg-icons";
 
@@ -31,11 +32,17 @@ const Enlace = styled.a`
 
 
 
-const Navbar = () => {
+const Navbar = ({usuario}) => {
   return (
     <>
       <Contenedor>
         <h2 className="titu">Barra Lateral</h2>
+
+        <ul>
+          <li>
+            <Link to="/prueba">Prueba</Link>
+          </li>
+        </ul>
  
       </Contenedor>
     </>
