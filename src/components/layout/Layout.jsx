@@ -1,20 +1,19 @@
 import React from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
-import styled from '@emotion/styled'
+import ContenedorP from "./ContenedorP";
+import styled from "@emotion/styled";
 
-const PrincipalC = styled.div`
-    margin-left:15vw;
-`
+const PrincipalC = styled.div``;
 
-const Layout = ({usuario,...props}) => {
+const Layout = ({ usuario, ...props }) => {
   //console.log(`usuario Layout: ${usuario}`)
   return (
     <>
-      <Navbar usuario={usuario}/>
-      <Header usuario={usuario}/>
-      <PrincipalC>{props.children}</PrincipalC>
-
+      <Navbar usuario={usuario} />
+      <Header usuario={usuario} />
+      <ContenedorP>{props.children}</ContenedorP>
+      {/* <PrincipalC>{props.children}</PrincipalC> */}
     </>
   );
 };
