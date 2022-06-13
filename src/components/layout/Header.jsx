@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import firebaseApp from "../../../credenciales";
+import firebaseApp from "../../../conexion";
 import { getAuth,signOut } from "firebase/auth";
 
 const auth = getAuth(firebaseApp);

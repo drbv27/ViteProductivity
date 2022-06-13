@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Layout from './layout/Layout'
-import firebaseApp from '../../credenciales';
+import firebaseApp from '../../conexion';
 import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(firebaseApp);
