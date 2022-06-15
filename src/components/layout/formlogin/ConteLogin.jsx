@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const ContenedorLo = styled.div`
-  height: 100vh;
+  height: 93vh;
   display: flex;
   flex-direction: column;
 `;
