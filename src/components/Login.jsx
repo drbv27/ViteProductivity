@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "./layout/Layout";
 import firebaseApp from "../../conexion";
-import styled from "@emotion/styled";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
