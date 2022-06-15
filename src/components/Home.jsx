@@ -1,13 +1,13 @@
-import React from 'react'
-import Layout from './layout/Layout'
-
-const Home = ({usuario}) => {
+import React from "react";
+import Layout from "./layout/Layout";
+import FormRegistro from "./layout/FormRegistro";
+const Home = ({ usuario }) => {
   //console.log(usuario.email);
   return (
     <Layout usuario={usuario.email}>
-      <h1>HOME</h1>
+      <FormRegistro />
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

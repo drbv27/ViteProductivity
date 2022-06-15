@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import Layout from "./layout/Layout";
 import firebaseApp from "../../conexion";
+import styled from "@emotion/styled";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import Titulo from "./layout/ui/Titulo";
+import ConteLogin from "./layout/formlogin/ConteLogin";
+import LabelLogin from "./layout/formlogin/LabelLogin";
+import InputLogin from "./layout/formlogin/InputLogin";
+import BotonLogin from "./layout/formlogin/BotonLogin";
+import FormLog2 from "./layout/formlogin/FormLog2";
+import BotonRegistro from "./layout/formlogin/BotonRegistro";
+
+/* estilos que no nos dan desde componentes */
 
 const auth = getAuth(firebaseApp);
 
@@ -34,22 +43,29 @@ const Login = () => {
 
   return (
     <Layout>
-      {/* <h1>{estaRegistrandose ? "Registrate" : "Inicia Sesión"}</h1> */}
-      <Titulo texto={estaRegistrandose ? "Registrate" : "Inicia Sesión"} />
-      <form onSubmit={submitHandler}>
-        <label htmlFor="usuario">Usuario</label>
-        <input type="text" placeholder="ingrese usuario" id="userName" />
-        <label htmlFor="usuario">Contraseña</label>
-        <input type="password" placeholder="ingrese contraseña" id="password" />
-        <button type="submit">
-          {estaRegistrandose ? "Registrate" : "Inicia sesión"}
-        </button>
-      </form>
-      <button onClick={() => setEstaRegistrandose(!estaRegistrandose)}>
-        {estaRegistrandose
-          ? "Ya tienes cuenta? Inicia sesión"
-          : "No tienes cuenta? Registrate"}
-      </button>
+      <ConteLogin>
+        <Titulo texto={estaRegistrandose ? "Registrate" : "Inicia Sesión"} />
+
+        {/* <FormLog onSubmit={submitHandler}> */}
+        <FormLog2 submitHandler={submitHandler}>
+          <LabelLogin para="usuario" texto="E-mail " />
+          <InputLogin tipo="email" placeh={"ingrese usuario"} iden="userName" />
+          <LabelLogin para="usuario" texto=" Contraseña " />
+          <InputLogin
+            tipo="password"
+            placeh="ingrese contraseña"
+            iden="password"
+          />
+          <BotonLogin
+            tipo="submit"
+            texto={estaRegistrandose ? "Registrate" : "Inicia sesión"}
+          />
+        </FormLog2>
+        <BotonRegistro
+          setEstaRegistrandose={setEstaRegistrandose}
+          estaRegistrandose={estaRegistrandose}
+        />
+      </ConteLogin>
     </Layout>
   );
 };
