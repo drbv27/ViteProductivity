@@ -9,7 +9,7 @@ const TituloC = styled.h2`
   font-size: 2rem;
 `;
 
-const Titulo = ({ texto }) => {
+const Titulo = ({ texto, estilo }) => {
   return <TituloC>{texto}</TituloC>;
 };
 
