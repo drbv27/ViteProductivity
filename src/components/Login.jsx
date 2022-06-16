@@ -49,7 +49,7 @@ const Login = () => {
         {/* <FormLog onSubmit={submitHandler}> */}
         <FormLog2 submitHandler={submitHandler}>
           <LabelLogin para="usuario" texto="E-mail " />
-          <InputLogin tipo="email" placeh={"ingrese usuario"} iden="userName" />
+          <InputLogin tipo="email" placeh="ingrese usuario" iden="userName" />
           <LabelLogin para="usuario" texto=" Contraseña " />
           <InputLogin
             tipo="password"
