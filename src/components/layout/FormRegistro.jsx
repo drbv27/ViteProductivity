@@ -11,6 +11,11 @@ import ConSubBlo from "./formregistro/ConSubBlo";
 const FormRegistro = () => {
   const datos = [
     {
+      subproceso: "subproceso",
+      proceso: "proceso",
+      macroproceso: "macroproceso",
+    },
+    {
       subproceso: "Asamblea General",
       proceso: "Gobierno",
       macroproceso: "Gerencia",
@@ -114,20 +119,39 @@ const FormRegistro = () => {
           <option>{subproc.subproceso}</option>
         ))}
       </select>
-      <div>
-        {datos
+
+{/*       <select name="prueba2" id="prueba2">
+        {subp===""
+        ?"prueba":
+        datos
           .filter((subpr) => subpr.subproceso.includes(subp))
           .map((filtrado) => (
-            <li>{filtrado.proceso}</li>
-          ))}
-      </div>
-      <div>
+            <option>{filtrado.proceso}</option>
+          ))
+        }
+      </select> */}
+      <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
+        ?"prueba":
+        datos
+          .filter((subpr) => subpr.subproceso.includes(subp))
+          .map((filtrado) => (
+            filtrado.proceso
+          ))}/>
+      <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
+        ?"prueba":
+        datos
+          .filter((subpr) => subpr.subproceso.includes(subp))
+          .map((filtrado) => (
+            filtrado.macroproceso
+          ))}/>
+     
+{/*       <div>
         {datos
           .filter((subpr) => subpr.subproceso.includes(subp))
           .map((filtrado) => (
             <li>{filtrado.macroproceso}</li>
           ))}
-      </div>
+      </div> */}
 
       <BotonRegiActiv tipo="submit" text="Registrar Actividad" />
     </ConteRegistro>
