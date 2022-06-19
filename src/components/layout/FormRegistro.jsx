@@ -114,22 +114,27 @@ const FormRegistro = () => {
           />
         </ConSubBlo>
       </ContBloq>
+
+      <label for="browser">Choose your browser from the list:</label>
+      <input list="browsers" name="browser" id="browser" onChange={cambio}/>
+
+      <datalist id="browsers">
+      {datos.map((subproc) => (
+          <option>{subproc.subproceso}</option>
+        ))}
+        {/* <option value="Edge"/>
+        <option value="Firefox"/>
+        <option value="Chrome"/>
+        <option value="Opera"/>
+        <option value="Safari"/> */}
+      </datalist>
+
       <select name="prueba" id="prueba" onChange={cambio}>
         {datos.map((subproc) => (
           <option>{subproc.subproceso}</option>
         ))}
       </select>
 
-{/*       <select name="prueba2" id="prueba2">
-        {subp===""
-        ?"prueba":
-        datos
-          .filter((subpr) => subpr.subproceso.includes(subp))
-          .map((filtrado) => (
-            <option>{filtrado.proceso}</option>
-          ))
-        }
-      </select> */}
       <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
         ?"prueba":
         datos
@@ -144,14 +149,9 @@ const FormRegistro = () => {
           .map((filtrado) => (
             filtrado.macroproceso
           ))}/>
+
+
      
-{/*       <div>
-        {datos
-          .filter((subpr) => subpr.subproceso.includes(subp))
-          .map((filtrado) => (
-            <li>{filtrado.macroproceso}</li>
-          ))}
-      </div> */}
 
       <BotonRegiActiv tipo="submit" text="Registrar Actividad" />
     </ConteRegistro>
