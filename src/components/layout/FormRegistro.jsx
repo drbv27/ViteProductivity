@@ -115,25 +115,20 @@ const FormRegistro = () => {
         </ConSubBlo>
       </ContBloq>
 
-      <label for="browser">Choose your browser from the list:</label>
-      <input list="browsers" name="browser" id="browser" onChange={cambio}/>
+      <label for="subprocesos">Escoja el subproceso:</label>
+      <input list="subprocesos" name="prueba" id="prueba" onChange={cambio}/>
 
-      <datalist id="browsers">
+      <datalist id="subprocesos">
       {datos.map((subproc) => (
           <option>{subproc.subproceso}</option>
         ))}
-        {/* <option value="Edge"/>
-        <option value="Firefox"/>
-        <option value="Chrome"/>
-        <option value="Opera"/>
-        <option value="Safari"/> */}
       </datalist>
 
-      <select name="prueba" id="prueba" onChange={cambio}>
+     {/*  <select name="prueba" id="prueba" onChange={cambio}>
         {datos.map((subproc) => (
           <option>{subproc.subproceso}</option>
         ))}
-      </select>
+      </select> */}
 
       <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
         ?"prueba":
