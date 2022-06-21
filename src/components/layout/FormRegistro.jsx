@@ -9,9 +9,13 @@ import ContBloq from "./formlogin/ContBloq";
 import ConSubBlo from "./formregistro/ConSubBlo";
 import data from "../../data/data.js"
 
-const FormRegistro = () => {
+import firebaseApp from "../../../conexion";
+import { getFirestore,updateDoc,doc } from "firebase/firestore";
+const firestore = getFirestore(firebaseApp);
+
+const FormRegistro = ({usuario,setArrayTareas,arrayTareas}) => {
   const datain = data;
-  const datos = [
+/*   const datos = [
     {
       subproceso: "subproceso",
       proceso: "proceso",
@@ -53,7 +57,7 @@ const FormRegistro = () => {
       proceso: "Manejo de equipos",
       macroproceso: "Soporte",
     },
-  ];
+  ]; */
   const [subp, setSubp] = useState("");
   function cambio(e) {
     e.preventDefault();
@@ -62,55 +66,61 @@ const FormRegistro = () => {
     /* console.log(evento); */
   }
   /* console.log(data); */
+
+
+
+  
   return (
     <ConteRegistro>
       <ContBloq>
         <ConSubBlo>
           <LabelRegistro para="ingreso" texto="Fecha" />
-          <InputRegistro tipo="date" ident="ingreso" />
+          <InputRegistro tipo="date" ident="formFecha" />
         </ConSubBlo>
         <ConSubBlo>
           <LabelRegistro para="inicio" texto="Hora Inicio" />
-          <InputRegistro tipo="time" ident="inicio" />
+          <InputRegistro tipo="time" ident="formInicio" />
         </ConSubBlo>
       </ContBloq>
       <ContBloq>
         <ConSubBlo>
           <LabelRegistro tipo="final" texto="Hora Final" />
-          <InputRegistro tipo="time" ident="final" />
+          <InputRegistro tipo="time" ident="formFinal" />
         </ConSubBlo>
-        <ConSubBlo>
+        
+{/*         <ConSubBlo>
           <LabelRegistro para="subproces" texto="Subproceso" />
           <InputRegistro
             tipo="text"
             ident="subproces"
             placeh="Que actividad voy a realizar..."
           />
-        </ConSubBlo>
+        </ConSubBlo> */}
+
       </ContBloq>
       <ContBloq>
-        <ConSubBlo>
+      {/*   <ConSubBlo>
           <LabelRegistro para="proces" texto="Proceso" />
           <InputRegistro
             tipo="text"
             ident="proces"
             placeh="Que actividad voy a realizar..."
           />
-        </ConSubBlo>
-        <ConSubBlo>
+        </ConSubBlo> */}
+ {/*        <ConSubBlo>
           <LabelRegistro para="macro" texto="Macroproceso" />
           <InputRegistro
             tipo="text"
             ident="macro"
             placeh="Que actividad voy a realizar..."
           />
-        </ConSubBlo>
+        </ConSubBlo> */}
       </ContBloq>
       <ContBloq>
         <ConSubBlo>
           <LabelRegistro para="actividad" texto="Actividad" />
           <TextareaRegistro
-            ident="actividad"
+            ident="formActividad"
             placeh="Descripción de la actividad."
             column="50"
             rowst="3"
@@ -118,30 +128,24 @@ const FormRegistro = () => {
         </ConSubBlo>
       </ContBloq>
 
-      <label for="subprocesos">Escoja el subproceso:</label>
-      <input list="subprocesos" name="prueba" id="prueba" onChange={cambio}/>
+      <label htmlFor="subprocesos">Escoja el subproceso:</label>
+      <input list="subprocesos" name="formSubproceso" id="formSubproceso" onChange={cambio}/>
 
       <datalist id="subprocesos">
-      {datain.map((subproc) => (
-          <option>{subproc.subproceso}</option>
+      {datain.map((subproc,index) => (
+          <option key={index}>{subproc.subproceso}</option>
         ))}
       </datalist>
 
-     {/*  <select name="prueba" id="prueba" onChange={cambio}>
-        {datos.map((subproc) => (
-          <option>{subproc.subproceso}</option>
-        ))}
-      </select> */}
-
-      <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
-        ?"prueba":
+      <input type="tipo" id="formProceso" size="tamaño" name="formProceso" readOnly value={subp===""
+        ?"":
         datain
           .filter((subpr) => subpr.subproceso.includes(subp))
           .map((filtrado) => (
             filtrado.proceso
           ))}/>
-      <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
-        ?"prueba":
+      <input type="tipo" id="formMacroproceso" size="tamaño" name="formMacroproceso" readOnly value={subp===""
+        ?"":
         datain
           .filter((subpr) => subpr.subproceso.includes(subp))
           .map((filtrado) => (

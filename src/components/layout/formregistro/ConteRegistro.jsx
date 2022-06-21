@@ -12,6 +12,7 @@ const ConReg = styled.form`
 const ConteRegistro = (props) => {
   return (
     <ConReg
+      
       style={{
         backgroundImage: `url(${robot})`,
         backgroundRepeat: "no-repeat",
