@@ -7,8 +7,10 @@ import BotonRegiActiv from "./formregistro/BotonRegiActiv";
 import Titulo from "./ui/Titulo";
 import ContBloq from "./formlogin/ContBloq";
 import ConSubBlo from "./formregistro/ConSubBlo";
+import data from "../../data/data.js"
 
 const FormRegistro = () => {
+  const datain = data;
   const datos = [
     {
       subproceso: "subproceso",
@@ -59,6 +61,7 @@ const FormRegistro = () => {
     setSubp(evento);
     /* console.log(evento); */
   }
+  /* console.log(data); */
   return (
     <ConteRegistro>
       <ContBloq>
@@ -119,7 +122,7 @@ const FormRegistro = () => {
       <input list="subprocesos" name="prueba" id="prueba" onChange={cambio}/>
 
       <datalist id="subprocesos">
-      {datos.map((subproc) => (
+      {datain.map((subproc) => (
           <option>{subproc.subproceso}</option>
         ))}
       </datalist>
@@ -132,14 +135,14 @@ const FormRegistro = () => {
 
       <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
         ?"prueba":
-        datos
+        datain
           .filter((subpr) => subpr.subproceso.includes(subp))
           .map((filtrado) => (
             filtrado.proceso
           ))}/>
       <input type="tipo" id="identificador" size="tamaño" name="nombre" value={subp===""
         ?"prueba":
-        datos
+        datain
           .filter((subpr) => subpr.subproceso.includes(subp))
           .map((filtrado) => (
             filtrado.macroproceso
