@@ -13,7 +13,8 @@ import firebaseApp from "../../../conexion";
 import { getFirestore,updateDoc,doc } from "firebase/firestore";
 const firestore = getFirestore(firebaseApp);
 
-const FormRegistro = ({usuario,setArrayTareas,arrayTareas}) => {
+const FormRegistro = ({correoUsuario,setArrayTareas,arrayTareas}) => {
+  
   const datain = data;
 
   const [subp, setSubp] = useState("");
@@ -25,13 +26,49 @@ const FormRegistro = ({usuario,setArrayTareas,arrayTareas}) => {
   }
   /* console.log(data); */
 
-
+  async function añadirTarea(e){
+    e.preventDefault();
+    const fecha = e.target.formFecha.value;
+    const inicio = e.target.formInicio.value;
+    const final = e.target.formFinal.value;
+    const subproceso = e.target.formSubproceso.value;
+    const proceso = e.target.formProceso.value;
+    const macroproceso = e.target.formMacroproceso.value;
+    const actividad = e.target.formActividad.value;
+    const total = (final.split(':').reduce((p,c)=>parseInt(p)*60+parseInt(c)))-(inicio.split(':').reduce((p,c)=>parseInt(p)*60+parseInt(c)))
+    //CREAR NUEVO ARRAY DE TAREAS
+    const nuevoArrayTareas = 
+    [...arrayTareas,
+      {id:+ new Date(),
+        fecha:fecha,
+        inicio:inicio,
+        final:final,
+        subproceso:subproceso,
+        proceso:proceso,
+        macroproceso:macroproceso,
+        actividad:actividad,
+        total:total,
+      }];
+    //actualizar DB
+    const docuRef = doc(firestore,`usuarios/${correoUsuario}`);
+    updateDoc(docuRef,{tareas:[...nuevoArrayTareas]});
+    //actualizar state
+    setArrayTareas(nuevoArrayTareas);
+    //Limpiar formulario
+    e.target.formFecha.value="";
+    e.target.formInicio.value="";
+    e.target.formFinal.value="";
+    e.target.formSubproceso.value="";
+    e.target.formProceso.value="";
+    e.target.formMacroproceso.value="";
+    e.target.formActividad.value="";
+  }
 
   
   return (
     <>
       
-      <form >
+      <form onSubmit={añadirTarea}>
         <input type="date" id="formFecha"/>
         <input type="time" id="formInicio"/>
         <input type="time" id="formFinal"/>
