@@ -12,8 +12,28 @@ const InpReg = styled.input`
   border-radius: 5px;
 `;
 
-const InputRegistro = ({ tipo, ident, placeh }) => {
-  return <InpReg type={tipo} id={ident} placeholder={placeh}></InpReg>;
+const InputRegistro = ({
+  cambiar,
+  lista,
+  tipo,
+  ident,
+  placeh,
+  tamano,
+  nom,
+  valor,
+}) => {
+  return (
+    <InpReg
+      list={lista}
+      type={tipo}
+      id={ident}
+      placeholder={placeh}
+      size={tamano}
+      name={nom}
+      value={valor}
+      onChange={cambiar}
+    ></InpReg>
+  );
 };
 
 export default InputRegistro;

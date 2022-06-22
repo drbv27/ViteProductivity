@@ -7,14 +7,14 @@ import BotonRegiActiv from "./formregistro/BotonRegiActiv";
 import Titulo from "./ui/Titulo";
 import ContBloq from "./formlogin/ContBloq";
 import ConSubBlo from "./formregistro/ConSubBlo";
-import data from "../../data/data.js"
+import data from "../../data/data.js";
 
 import firebaseApp from "../../../conexion";
-import { getFirestore,updateDoc,doc } from "firebase/firestore";
+import { getFirestore, updateDoc, doc } from "firebase/firestore";
+import DataListRegistro from "./formregistro/DataListRegistro";
 const firestore = getFirestore(firebaseApp);
 
-const FormRegistro = ({correoUsuario,setArrayTareas,arrayTareas}) => {
-  
+const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   const datain = data;
 
   const [subp, setSubp] = useState("");
@@ -22,11 +22,12 @@ const FormRegistro = ({correoUsuario,setArrayTareas,arrayTareas}) => {
     e.preventDefault();
     const evento = e.target.value;
     setSubp(evento);
+
     /* console.log(evento); */
   }
   /* console.log(data); */
 
-  async function añadirTarea(e){
+  async function añadirTarea(e) {
     e.preventDefault();
     const fecha = e.target.formFecha.value;
     const inicio = e.target.formInicio.value;
@@ -35,71 +36,121 @@ const FormRegistro = ({correoUsuario,setArrayTareas,arrayTareas}) => {
     const proceso = e.target.formProceso.value;
     const macroproceso = e.target.formMacroproceso.value;
     const actividad = e.target.formActividad.value;
-    const total = (final.split(':').reduce((p,c)=>parseInt(p)*60+parseInt(c)))-(inicio.split(':').reduce((p,c)=>parseInt(p)*60+parseInt(c)))
+    const total =
+      final.split(":").reduce((p, c) => parseInt(p) * 60 + parseInt(c)) -
+      inicio.split(":").reduce((p, c) => parseInt(p) * 60 + parseInt(c));
+
     //CREAR NUEVO ARRAY DE TAREAS
-    const nuevoArrayTareas = 
-    [...arrayTareas,
-      {id:+ new Date(),
-        fecha:fecha,
-        inicio:inicio,
-        final:final,
-        subproceso:subproceso,
-        proceso:proceso,
-        macroproceso:macroproceso,
-        actividad:actividad,
-        total:total,
-      }];
+    const nuevoArrayTareas = [
+      ...arrayTareas,
+      {
+        id: +new Date(),
+        fecha: fecha,
+        inicio: inicio,
+        final: final,
+        subproceso: subproceso,
+        proceso: proceso,
+        macroproceso: macroproceso,
+        actividad: actividad,
+        total: total,
+      },
+    ];
     //actualizar DB
-    const docuRef = doc(firestore,`usuarios/${correoUsuario}`);
-    updateDoc(docuRef,{tareas:[...nuevoArrayTareas]});
+    const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
+    updateDoc(docuRef, { tareas: [...nuevoArrayTareas] });
     //actualizar state
     setArrayTareas(nuevoArrayTareas);
     //Limpiar formulario
-    e.target.formFecha.value="";
-    e.target.formInicio.value="";
-    e.target.formFinal.value="";
-    e.target.formSubproceso.value="";
-    e.target.formProceso.value="";
-    e.target.formMacroproceso.value="";
-    e.target.formActividad.value="";
+    e.target.formFecha.value = "";
+    e.target.formInicio.value = "";
+    e.target.formFinal.value = "";
+    e.target.formSubproceso.value = "";
+    e.target.formProceso.value = "";
+    e.target.formMacroproceso.value = "";
+    e.target.formActividad.value = "";
   }
-
-  
   return (
     <>
-      
-      <form onSubmit={añadirTarea}>
-        <input type="date" id="formFecha"/>
-        <input type="time" id="formInicio"/>
-        <input type="time" id="formFinal"/>
-        
-        <label htmlFor="subprocesos">Escoja el subproceso:</label>
-        <input list="subprocesos" name="formSubproceso" id="formSubproceso" onChange={cambio}/>
-        <datalist id="subprocesos">
-          {datain.map((subproc,index) => (
-          <option key={index}>{subproc.subproceso}</option>
-          ))}
-        </datalist>
-
-        <input type="tipo" id="formProceso" size="tamaño" name="formProceso" readOnly value={subp===""
-          ?"":
-          datain
-            .filter((subpr) => subpr.subproceso.includes(subp))
-            .map((filtrado) => (
-              filtrado.proceso
-            ))}/>
-        <input type="tipo" id="formMacroproceso" size="tamaño" name="formMacroproceso" readOnly value={subp===""
-          ?"":
-          datain
-            .filter((subpr) => subpr.subproceso.includes(subp))
-            .map((filtrado) => (
-              filtrado.macroproceso
-            ))}/>
-        <textarea placeholder="actividad" id="formActividad"/>
-        <input type="submit"/>
-      </form>
+      <ConteRegistro enviar={añadirTarea}>
+        <ContBloq>
+          <ConSubBlo>
+            <LabelRegistro para="fecha" texto="Fecha Actividad" />
+            <InputRegistro tipo="date" ident="formFecha" />
+          </ConSubBlo>
+          <ConSubBlo>
+            <LabelRegistro para="inicio" texto="Hora Inicio" />
+            <InputRegistro tipo="time" ident="formInicio" />
+          </ConSubBlo>
+        </ContBloq>
+        <ContBloq>
+          <ConSubBlo>
+            <LabelRegistro para="final" texto="Hora Final" />
+            <InputRegistro tipo="time" ident="formFinal" />
+          </ConSubBlo>
+          <ConSubBlo>
+            <LabelRegistro para="subprocesos" texto="Ingrese Actividad" />
+            <InputRegistro
+              lista="subprocesos"
+              nom="formSubproceso"
+              ident="formSubproceso"
+              placeh="Subproceso"
+              cambiar={cambio}
+            />
+            <DataListRegistro ident="subprocesos">
+              {datain.map((subproc, index) => (
+                <option key={index}>{subproc.subproceso}</option>
+              ))}
+            </DataListRegistro>
+          </ConSubBlo>
+        </ContBloq>
+        <ContBloq>
+          <ConSubBlo>
+            <LabelRegistro para="procesos" texto="Proceso" />
+            <InputRegistro
+              tipo="tipo"
+              ident="formProceso"
+              tamano="tamaño"
+              nom="formProceso"
+              placeh="Proceso"
+              readOnly
+              valor={
+                subp === ""
+                  ? ""
+                  : datain
+                      .filter((subpr) => subpr.subproceso.includes(subp))
+                      .map((filtrado) => filtrado.proceso)
+              }
+            />
+          </ConSubBlo>
+          <ConSubBlo>
+            <LabelRegistro para="procesos" texto="Macroproceso" />
+            <InputRegistro
+              tipo="tipo"
+              ident="formMacroproceso"
+              tamano="tamaño"
+              nom="formMacroproceso"
+              placeh="Macroproceso"
+              readOnly
+              valor={
+                subp === ""
+                  ? ""
+                  : datain
+                      .filter((subpr) => subpr.subproceso.includes(subp))
+                      .map((filtrado) => filtrado.macroproceso)
+              }
+            />
+          </ConSubBlo>
+        </ContBloq>
+        <TextareaRegistro
+          placeh="Descripcion de la Actividad"
+          ident="formActividad"
+          column={30}
+          rowst={5}
+        />
+        <BotonRegiActiv tipo="submit" text="Registrar Actividad" />
+      </ConteRegistro>
     </>
-  )
+  );
 };
 
 export default FormRegistro;

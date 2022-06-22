@@ -9,10 +9,10 @@ const ConReg = styled.form`
   margin-top: 3rem;
 `;
 
-const ConteRegistro = (props) => {
+const ConteRegistro = ({ enviar, ...props }) => {
   return (
     <ConReg
-      
+      onSubmit={enviar}
       style={{
         backgroundImage: `url(${robot})`,
         backgroundRepeat: "no-repeat",
