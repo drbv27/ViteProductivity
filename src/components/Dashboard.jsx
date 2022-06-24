@@ -3,6 +3,7 @@ import Layout from './layout/Layout'
 import BarChart from './layout/ui/BarChart'
 import LineChart from './layout/ui/LineChart'
 import SegmentChart from './layout/ui/SegmentChart'
+import SegmentChartGrandient from './layout/ui/SegmentChartGradient'
 
 
 const Dashboard = () => {
@@ -11,6 +12,7 @@ const Dashboard = () => {
         <LineChart/>
         <BarChart/>
         <SegmentChart/>
+        <SegmentChartGrandient/>
     </Layout>
   )
 }
