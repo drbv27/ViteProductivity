@@ -1,12 +1,12 @@
 import React from 'react'
 import Layout from './layout/Layout'
+import LineChart from './layout/ui/LineChart'
+
 
 const Dashboard = () => {
   return (
     <Layout>
-        <div>
-            <h1>Dashboard</h1>
-        </div>
+        <LineChart/>
     </Layout>
   )
 }
