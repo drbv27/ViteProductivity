@@ -40,7 +40,10 @@ const Navbar = ({usuario}) => {
 
         <ul>
           <li>
-            <Link to="/prueba">Prueba</Link>
+            <Link to="/"><FontAwesomeIcon icon={faHouse} /> Inicio</Link>
+          </li>
+          <li>
+            <Link to="/dash"><FontAwesomeIcon icon={faChartArea} /> Dashboard</Link>
           </li>
         </ul>
  
