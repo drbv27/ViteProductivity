@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from './layout/Layout'
 import BarChart from './layout/ui/BarChart'
 import LineChart from './layout/ui/LineChart'
+import SegmentChart from './layout/ui/SegmentChart'
 
 
 const Dashboard = () => {
@@ -9,6 +10,7 @@ const Dashboard = () => {
     <Layout>
         <LineChart/>
         <BarChart/>
+        <SegmentChart/>
     </Layout>
   )
 }
