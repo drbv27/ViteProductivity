@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+import TableModel from "./ui/TableModel";
+import TableComponent from "./TableComponent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 import firebaseApp from '../../../conexion';
 import { getFirestore,updateDoc,doc } from "firebase/firestore";
@@ -50,8 +54,9 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
   return (
     <div>
       <h1>Actividades</h1>
-      <table>
-        <tr>
+      <div style={{border:'1px solid black', borderRadius:'5px'}}>
+      <TableComponent>
+        <TableModel>
           <th>Dia</th>
           <th>Inicio</th>
           <th>Fin</th>
@@ -60,8 +65,10 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th>macroproceso</th>
           <th>Actividad</th>
           <th>Duración</th>
+          <th></th>
+          <th></th>
 
-        </tr>
+        </TableModel>
         {arrayTareas.map((objetoTarea)=>{
           return(
             
@@ -74,8 +81,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
             <td>{objetoTarea.macroproceso}</td>
             <td>{objetoTarea.actividad}</td>
             <td>{calculoTiempo(objetoTarea.final,objetoTarea.inicio)}</td>
-            <td><button>Editar</button></td>
-            <td><button onClick={()=>eliminarTarea(objetoTarea.id)}>Eliminar</button></td>
+            <td><button style={{backgroundColor:"blue", borderColor:"blue"}}><FontAwesomeIcon icon={faPenToSquare} style={{color:"white"}}/></button></td>
+            <td><button onClick={()=>eliminarTarea(objetoTarea.id)} style={{backgroundColor:"red", borderColor:"red"}}><FontAwesomeIcon icon={faTrashCan} style={{color:"white"}}/></button></td>
             </tr>
           
           
@@ -101,7 +108,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th>total</th>
            <th>{filtro()}</th> 
         </tr> */}
-      </table>
+      </TableComponent>
+      </div>
     </div>
   )
 }
