@@ -1,6 +1,8 @@
 import React from 'react';
 import TableModel from "./ui/TableModel";
 import TableComponent from "./TableComponent";
+import ThModel from "./ui/ThModel";
+import TdModel from "./ui/TdModel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
@@ -54,35 +56,34 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
   return (
     <div>
       <h1>Actividades</h1>
-      <div style={{border:'1px solid black', borderRadius:'5px'}}>
       <TableComponent>
         <TableModel>
-          <th>Dia</th>
-          <th>Inicio</th>
-          <th>Fin</th>
-          <th>Subproceso</th>
-          <th>proceso</th>
-          <th>macroproceso</th>
-          <th>Actividad</th>
-          <th>Duración</th>
-          <th></th>
-          <th></th>
+          <ThModel>Día</ThModel>
+          <ThModel>Inicio</ThModel>
+          <ThModel>Fin</ThModel>
+          <ThModel>Subproceso</ThModel>
+          <ThModel>proceso</ThModel>
+          <ThModel>macroproceso</ThModel>
+          <ThModel>Actividad</ThModel>
+          <ThModel>Duración</ThModel>
+          <ThModel></ThModel>
+          <ThModel></ThModel>
 
         </TableModel>
         {arrayTareas.map((objetoTarea)=>{
           return(
             
             <tr>
-            <td>{objetoTarea.fecha}</td>
-            <td>{objetoTarea.inicio}</td>
-            <td>{objetoTarea.final}</td>
-            <td>{objetoTarea.subproceso}</td>
-            <td>{objetoTarea.proceso}</td>
-            <td>{objetoTarea.macroproceso}</td>
-            <td>{objetoTarea.actividad}</td>
-            <td>{calculoTiempo(objetoTarea.final,objetoTarea.inicio)}</td>
-            <td><button style={{backgroundColor:"blue", borderColor:"blue"}}><FontAwesomeIcon icon={faPenToSquare} style={{color:"white"}}/></button></td>
-            <td><button onClick={()=>eliminarTarea(objetoTarea.id)} style={{backgroundColor:"red", borderColor:"red"}}><FontAwesomeIcon icon={faTrashCan} style={{color:"white"}}/></button></td>
+            <TdModel>{objetoTarea.fecha}</TdModel>
+            <TdModel>{objetoTarea.inicio}</TdModel>
+            <TdModel>{objetoTarea.final}</TdModel>
+            <TdModel>{objetoTarea.subproceso}</TdModel>
+            <TdModel>{objetoTarea.proceso}</TdModel>
+            <TdModel>{objetoTarea.macroproceso}</TdModel>
+            <TdModel>{objetoTarea.actividad}</TdModel>
+            <TdModel>{calculoTiempo(objetoTarea.final,objetoTarea.inicio)}</TdModel>
+            <TdModel><button style={{backgroundColor:"#1097d5", borderColor:"#1097d5"}}><FontAwesomeIcon icon={faPenToSquare} style={{color:"white"}}/></button></TdModel>
+            <TdModel><button onClick={()=>eliminarTarea(objetoTarea.id)} style={{backgroundColor:"red", borderColor:"red"}}><FontAwesomeIcon icon={faTrashCan} style={{color:"white"}}/></button></TdModel>
             </tr>
           
           
@@ -95,8 +96,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th></th>
           <th></th>
           <th></th>
-          <th>total</th>
-           <th>{calcTotal(arrayTareas)}</th> 
+          <th style={{borderRadius:'20px 0 0 20px', marginTop:'20px', backgroundColor:'#1097d5', color:'white', paddingTop:'10px', paddingBottom:'10px'}}>total</th>
+          <th style={{borderRadius:'0 20px 20px 0', marginTop:'20px', backgroundColor:'#1097d5', color:'white'}}>{calcTotal(arrayTareas)}</th> 
         </tr> 
 {/*         <tr>
         <th></th>
@@ -109,7 +110,6 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
            <th>{filtro()}</th> 
         </tr> */}
       </TableComponent>
-      </div>
     </div>
   )
 }
