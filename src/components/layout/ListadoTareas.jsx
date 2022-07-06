@@ -13,6 +13,16 @@ const firestore = getFirestore(firebaseApp);
 
 const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
 
+
+  const today = new Date()
+        let mes = ""
+        let dia = ""
+        {today.getMonth()+1>=9?mes=today.getMonth()+1:mes=`0${today.getMonth()+1}`}
+        {today.getDate()>=9?dia=today.getDate():dia=`0${today.getDate()}`}
+        //console.log(`hoy:${today}`);
+        //console.log(mes,dia)
+        const hoy = `${today.getFullYear()}-${mes}-${dia}`
+
     async function eliminarTarea(idTareaAEliminar){
         //crear nuevo array de tareas
         const nuevoArrayTareas = arrayTareas.filter((objetoTarea)=>objetoTarea.id !== idTareaAEliminar);
@@ -75,7 +85,18 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
             dat.fecha===hoy
           )
         })
+        
         console.log(gerencia2);
+        {gerencia2.map((objetoTarea)=>{
+          return(
+            
+            <div>
+            <p>{objetoTarea.proceso}</p>
+            </div>
+          
+          
+          )
+        })}
         //console.log(totGer) 
       } 
 
@@ -96,6 +117,7 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <ThModel></ThModel>
 
         </TableModel>
+        
         {arrayTareas.map((objetoTarea)=>{
           return(
             
@@ -115,6 +137,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           
           )
         })}
+        
+
         <tr>
         <th></th>
           <th></th>
@@ -133,9 +157,42 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th></th>
           <th></th>
           <th>filtro:</th>
-           <th>{filtro()}</th> 
+           
         </tr> 
       </TableComponent>
+      <h2>filtrado</h2>
+      {arrayTareas.filter((dat)=>{
+          return(
+            /* dat.fecha>="2022-06-22" && dat.fecha<="2022-06-23" */
+            dat.fecha===hoy
+          )
+        }).map((objt)=>{
+          return(
+            <tr>
+              <td>
+              {objt.fecha}
+              </td>
+              <td>
+              {objt.inicio}
+              </td>
+              <td>
+              {objt.final}
+              </td>
+              <td>
+              {objt.subproceso}
+              </td>
+              <td>
+              {objt.proceso}
+              </td>
+              <td>
+              {objt.macroproceso}
+              </td>
+              <td>
+              {objt.actividad}
+              </td>
+            </tr>
+          )
+        })}
     </div>
   )
 }
