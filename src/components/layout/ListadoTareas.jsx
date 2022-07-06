@@ -42,16 +42,42 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
         return (`${sum}`)
       }
     
-/*       const filtro = ()=>{
+/*        const filtro = ()=>{
         const gerencia = arrayTareas.filter((act)=>{
           return(
             act.macroproceso==="Gerencia"
           )
         })
-        console.log(gerencia)
+        console.log(gerencia[0].fecha)
         const totGer = gerencia.reduce((prev,curr,index,array)=>prev+curr.total,0)
         console.log(totGer) 
-      } */
+      }  */
+       const filtro = ()=>{
+        const gerencia = arrayTareas.filter((dat)=>{
+          return(
+            dat.fecha>="2022-06-22" && dat.fecha<="2022-06-23"
+          )
+        })
+        //console.log(gerencia)
+        const today = new Date()
+        let mes = ""
+        let dia = ""
+        {today.getMonth()+1>=9?mes=today.getMonth()+1:mes=`0${today.getMonth()+1}`}
+        {today.getDate()>=9?dia=today.getDate():dia=`0${today.getDate()}`}
+        //console.log(`hoy:${today}`);
+        //console.log(mes,dia)
+        const hoy = `${today.getFullYear()}-${mes}-${dia}`
+        console.log(hoy)
+        console.log(gerencia[0].fecha);
+        const totGer = gerencia.reduce((prev,curr,index,array)=>prev+curr.total,0)
+        const gerencia2 = arrayTareas.filter((dat)=>{
+          return(
+            dat.fecha===hoy
+          )
+        })
+        console.log(gerencia2);
+        //console.log(totGer) 
+      } 
 
   return (
     <div>
@@ -99,16 +125,16 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th style={{borderRadius:'20px 0 0 20px', marginTop:'20px', backgroundColor:'#1097d5', color:'white', paddingTop:'10px', paddingBottom:'10px'}}>total</th>
           <th style={{borderRadius:'0 20px 20px 0', marginTop:'20px', backgroundColor:'#1097d5', color:'white'}}>{calcTotal(arrayTareas)}</th> 
         </tr> 
-{/*         <tr>
+         <tr>
         <th></th>
           <th></th>
           <th></th>
           <th></th>
           <th></th>
           <th></th>
-          <th>total</th>
+          <th>filtro:</th>
            <th>{filtro()}</th> 
-        </tr> */}
+        </tr> 
       </TableComponent>
     </div>
   )

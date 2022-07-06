@@ -23,8 +23,8 @@ ChartJS.register(
   Filler
 );
 
-const scores = [6, 5, 5, 5, 3, 4, 6, 4, 5];
-const labels = [100, 200, 300, 400, 500, 600, 700];
+const scores = [6, 5, 5, 5, 3, 4, 6, 4, 5,1,0];
+const labels = ["Gerencia", "Innovación", "Educación Tecnológica", "Administrativo", "Contable", "Jurídico", "Mercadeo y ventas", "Soporte", "Ingenieria","Otro","Día Festivo"];
 
 const options = {
   fill: true,
