@@ -13,15 +13,21 @@ const firestore = getFirestore(firebaseApp);
 
 const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
 
-
+  let filtrado = []
   const today = new Date()
-        let mes = ""
-        let dia = ""
-        {today.getMonth()+1>=9?mes=today.getMonth()+1:mes=`0${today.getMonth()+1}`}
-        {today.getDate()>=9?dia=today.getDate():dia=`0${today.getDate()}`}
-        //console.log(`hoy:${today}`);
-        //console.log(mes,dia)
-        const hoy = `${today.getFullYear()}-${mes}-${dia}`
+  let mes = ""
+  let dia = "";
+  {today.getMonth()+1>=9?mes=today.getMonth()+1:mes=`0${today.getMonth()+1}`};
+  {today.getDate()>=9?dia=today.getDate():dia=`0${today.getDate()}`};
+  const hoy = `${today.getFullYear()}-${mes}-${dia}`
+
+  filtrado = arrayTareas.filter((dat)=>{
+    return(
+      /* dat.fecha>="2022-06-22" && dat.fecha<="2022-06-23" */
+      dat.fecha===hoy
+    )
+  })
+  console.log(filtrado)
 
     async function eliminarTarea(idTareaAEliminar){
         //crear nuevo array de tareas
@@ -47,9 +53,14 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
        }
 
        const calcTotal = (arrayT) =>{
-        const sum = arrayTareas.reduce((prev,curr,index,array)=>prev+curr.total,0)
+        const sum = arrayT.reduce((prev,curr,index,array)=>prev+curr.total,0)
+        let horas = Math.floor(sum/60);
+        let minutos = sum%60;
+        if (minutos<10){
+            minutos = `0${minutos}`
+         }
         /* console.log(sum) */
-        return (`${sum}`)
+        return (`${horas}:${minutos}`)
       }
     
 /*        const filtro = ()=>{
@@ -149,18 +160,23 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th style={{borderRadius:'20px 0 0 20px', marginTop:'20px', backgroundColor:'#1097d5', color:'white', paddingTop:'10px', paddingBottom:'10px'}}>total</th>
           <th style={{borderRadius:'0 20px 20px 0', marginTop:'20px', backgroundColor:'#1097d5', color:'white'}}>{calcTotal(arrayTareas)}</th> 
         </tr> 
-         <tr>
-        <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th>filtro:</th>
-           
-        </tr> 
+ 
       </TableComponent>
+      <TableComponent>
       <h2>filtrado</h2>
+        <TableModel>
+          <ThModel>Día</ThModel>
+          <ThModel>Inicio</ThModel>
+          <ThModel>Fin</ThModel>
+          <ThModel>Subproceso</ThModel>
+          <ThModel>proceso</ThModel>
+          <ThModel>macroproceso</ThModel>
+          <ThModel>Actividad</ThModel>
+          <ThModel>Duración</ThModel>
+          <ThModel></ThModel>
+          <ThModel></ThModel>
+
+        </TableModel>
       {arrayTareas.filter((dat)=>{
           return(
             /* dat.fecha>="2022-06-22" && dat.fecha<="2022-06-23" */
@@ -169,30 +185,45 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
         }).map((objt)=>{
           return(
             <tr>
-              <td>
+              <TdModel>
               {objt.fecha}
-              </td>
-              <td>
+              </TdModel>
+              <TdModel>
               {objt.inicio}
-              </td>
-              <td>
+              </TdModel>
+              <TdModel>
               {objt.final}
-              </td>
-              <td>
+              </TdModel>
+              <TdModel>
               {objt.subproceso}
-              </td>
-              <td>
+              </TdModel>
+              <TdModel>
               {objt.proceso}
-              </td>
-              <td>
+              </TdModel>
+              <TdModel>
               {objt.macroproceso}
-              </td>
-              <td>
+              </TdModel>
+              <TdModel>
               {objt.actividad}
-              </td>
+              </TdModel>
+              <TdModel>{calculoTiempo(objt.final,objt.inicio)}</TdModel>
+              <TdModel><button style={{backgroundColor:"#1097d5", borderColor:"#1097d5"}}><FontAwesomeIcon icon={faPenToSquare} style={{color:"white"}}/></button></TdModel>
+            <TdModel><button onClick={()=>eliminarTarea(objetoTarea.id)} style={{backgroundColor:"red", borderColor:"red"}}><FontAwesomeIcon icon={faTrashCan} style={{color:"white"}}/></button></TdModel>
+              
             </tr>
           )
         })}
+                <tr>
+        <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th style={{borderRadius:'20px 0 0 20px', marginTop:'20px', backgroundColor:'#1097d5', color:'white', paddingTop:'10px', paddingBottom:'10px'}}>total</th>
+          <th style={{borderRadius:'0 20px 20px 0', marginTop:'20px', backgroundColor:'#1097d5', color:'white'}}>{calcTotal(filtrado)}</th> 
+        </tr> 
+        </TableComponent>
     </div>
   )
 }
