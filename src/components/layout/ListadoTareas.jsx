@@ -114,7 +114,7 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
   return (
     <div>
       <h1>Actividades</h1>
-      <TableComponent>
+      {/* <TableComponent>
         <TableModel>
           <ThModel>Día</ThModel>
           <ThModel>Inicio</ThModel>
@@ -124,8 +124,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <ThModel>macroproceso</ThModel>
           <ThModel>Actividad</ThModel>
           <ThModel>Duración</ThModel>
-          <ThModel></ThModel>
-          <ThModel></ThModel>
+          <ThModel>Editar</ThModel>
+          <ThModel>Borrar</ThModel>
 
         </TableModel>
         
@@ -161,9 +161,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th style={{borderRadius:'0 20px 20px 0', marginTop:'20px', backgroundColor:'#1097d5', color:'white'}}>{calcTotal(arrayTareas)}</th> 
         </tr> 
  
-      </TableComponent>
+      </TableComponent> */}
       <TableComponent>
-      <h2>filtrado</h2>
         <TableModel>
           <ThModel>Día</ThModel>
           <ThModel>Inicio</ThModel>
@@ -173,8 +172,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <ThModel>macroproceso</ThModel>
           <ThModel>Actividad</ThModel>
           <ThModel>Duración</ThModel>
-          <ThModel></ThModel>
-          <ThModel></ThModel>
+          <ThModel>Editar</ThModel>
+          <ThModel>Borrar</ThModel>
 
         </TableModel>
       {arrayTareas.filter((dat)=>{
@@ -208,13 +207,13 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
               </TdModel>
               <TdModel>{calculoTiempo(objt.final,objt.inicio)}</TdModel>
               <TdModel><button style={{backgroundColor:"#1097d5", borderColor:"#1097d5"}}><FontAwesomeIcon icon={faPenToSquare} style={{color:"white"}}/></button></TdModel>
-            <TdModel><button onClick={()=>eliminarTarea(objetoTarea.id)} style={{backgroundColor:"red", borderColor:"red"}}><FontAwesomeIcon icon={faTrashCan} style={{color:"white"}}/></button></TdModel>
+            <TdModel><button onClick={()=>eliminarTarea(objt.id)} style={{backgroundColor:"red", borderColor:"red"}}><FontAwesomeIcon icon={faTrashCan} style={{color:"white"}}/></button></TdModel>
               
             </tr>
           )
         })}
-                <tr>
-        <th></th>
+        <tr>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
