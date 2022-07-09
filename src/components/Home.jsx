@@ -5,6 +5,7 @@ import ListadoTareas from "./layout/ListadoTareas";
 
 import firebaseApp from "../../conexion";
 import { getFirestore,doc,getDoc,setDoc } from "firebase/firestore";
+import Selector from "./layout/Selector";
 
 
 const firestore = getFirestore(firebaseApp);
@@ -55,6 +56,7 @@ const Home = ({ usuario }) => {
           <ListadoTareas arrayTareas={arrayTareas} correoUsuario={correoUsuario} setArrayTareas={setArrayTareas}/>
           :null
           }
+      <Selector arrayTareas={arrayTareas}/>
     </Layout>
   );
 };

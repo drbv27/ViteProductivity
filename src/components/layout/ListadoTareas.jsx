@@ -111,6 +111,8 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
         //console.log(totGer) 
       } 
 
+
+
   return (
     <div>
       <h1>Actividades</h1>
@@ -223,6 +225,7 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
           <th style={{borderRadius:'0 20px 20px 0', marginTop:'20px', backgroundColor:'#1097d5', color:'white'}}>{calcTotal(filtrado)}</th> 
         </tr> 
         </TableComponent>
+
     </div>
   )
 }
