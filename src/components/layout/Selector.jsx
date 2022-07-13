@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
+import data from '../../data/data';
 import BarChart from './ui/BarChart';
+import BarrasG from './ui/BarrasG';
+import {UserData} from './ui/Data'
 
 const Selector = ({arrayTareas}) => {
 
     const [filtro,setFiltro] = useState(null)
+    const [userData,setUserData] = useState({
+        labels: UserData.map((data)=>data.year),
+        datasets:[{
+            label:"User Gained",
+            data:UserData.map((data)=>data.userGain),
+
+        }],
+    })
     let ingenieria = 0
     
 
@@ -26,7 +37,7 @@ const Selector = ({arrayTareas}) => {
    
   return (
     <div>
-        <h2>Seleccionar Intervalo</h2>
+        <h2>Reporte: seleccione un intervalo</h2>
         <form onSubmit={filtrarTareas}>
         <input type="date" id="finicio" />
         <input type="date" id="ffinal"/>
@@ -48,6 +59,8 @@ const Selector = ({arrayTareas}) => {
         :null}
 
         <BarChart ingenieria={ingenieria}/>
+        {/* <BarrasG chartData={userData}/> */}
+        <BarrasG chartData={arrayTareas}/>
         {console.log(ingenieria)}
         
     </div>

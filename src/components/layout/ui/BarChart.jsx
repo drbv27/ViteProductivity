@@ -42,7 +42,7 @@ const options = {
   },
 };
 
-export default function BarChart() {
+export default function BarChart({ingenieria}) {
   const data = useMemo(function () {
     return {
       datasets: [

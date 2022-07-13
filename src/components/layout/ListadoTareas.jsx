@@ -115,7 +115,7 @@ const ListadoTareas = ({arrayTareas,correoUsuario,setArrayTareas}) => {
 
   return (
     <div>
-      <h1>Actividades</h1>
+      <h1>Actividades del dia</h1>
       {/* <TableComponent>
         <TableModel>
           <ThModel>Día</ThModel>
