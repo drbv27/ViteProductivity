@@ -84,8 +84,11 @@ function BarChart({ chartData }) {
         }).then((response)=>{setUserData({
             labels: response.map((data)=>data.macroproceso),
             datasets:[{
-                label:"cambio",
+                label:"Actividades",
                 data:response.map((data)=>data.cantidad),
+                backgroundColor:["rgba(16,151,213,0.4)","rgba(129,183,31,0.4)"],
+                borderColor:["#1097d5","#81b71f"],
+                borderWidth:2
     
             }],
         })})

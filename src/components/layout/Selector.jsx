@@ -58,7 +58,7 @@ const Selector = ({arrayTareas}) => {
         }).length}</h2>
         :null}
 
-        <BarChart ingenieria={ingenieria}/>
+       {/*  <BarChart ingenieria={ingenieria}/> */}
         {/* <BarrasG chartData={userData}/> */}
         <BarrasG chartData={arrayTareas}/>
         {console.log(ingenieria)}
