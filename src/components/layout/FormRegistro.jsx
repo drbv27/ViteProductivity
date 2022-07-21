@@ -50,21 +50,23 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
     
   }
 
-  const fecha = ()=>{
+  const fechaF = ()=>{
     const fechar =new Date();
     let dia = fechar.getDate();
     dia<=9 ? dia=`0${dia}`:dia=dia;
     let mes = fechar.getMonth()+1;
     mes<=9 ? mes=`0${mes}`:mes=mes;
     const anio = fechar.getFullYear();
-    console.log(fechar)
-    console.log(`${anio}-${mes}-${dia}`)
-    return `${anio}-${mes}-${dia}`
+    const fechita = `${anio}-${mes}-${dia}`
+    /* console.log(fechar)
+    console.log(`${anio}-${mes}-${dia}`) */
+    return fechita
   }
 
   async function añadirTarea(e) {
     e.preventDefault();
-    const fecha = e.target.formFecha.value;
+    /* const fecha = e.target.formFecha.value; */
+    const fecha = fechaF();
     /* const inicio = e.target.formInicio.value; */
     const inicio = inicioC;
     
@@ -100,9 +102,9 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
     //actualizar state
     setArrayTareas(nuevoArrayTareas);
     //Limpiar formulario
-    e.target.formFecha.value = "";
+/*     e.target.formFecha.value = "";
     e.target.formInicio.value = "";
-    e.target.formFinal.value = "";
+    e.target.formFinal.value = ""; */
     e.target.formSubproceso.value = "";
     e.target.formProceso.value = "";
     e.target.formMacroproceso.value = "";
@@ -123,7 +125,7 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
       <ConteRegistro enviar={añadirTarea}>
         <ContBloq>
           <ConSubBlo>
-            {fecha()}
+            {fechaF()}
             {/* <LabelRegistro para="fecha" texto="Fecha Actividad" />
             <InputRegistro tipo="date" ident="formFecha" /> */}
           </ConSubBlo>
