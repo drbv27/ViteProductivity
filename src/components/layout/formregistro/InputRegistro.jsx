@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 
 const InpReg = styled.input`
   border: 2px solid #a7a7a7;
-  width: 250px;
+  width: 350px;
   text-align: left;
   height: 40px;
   color: #000000;
   font-size: 16px;
-  margin: 0.5rem 1rem 2rem 1rem;
+  margin: 0.5rem 1rem 1rem 1rem;
   border-radius: 5px;
 `;
 

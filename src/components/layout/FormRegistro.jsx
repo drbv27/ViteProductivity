@@ -9,6 +9,10 @@ import ContBloq from "./formlogin/ContBloq";
 import ConSubBlo from "./formregistro/ConSubBlo";
 import data from "../../data/data.js";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlayCircle,faCircleStop } from "@fortawesome/free-regular-svg-icons";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+
 import firebaseApp from "../../../conexion";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
 import DataListRegistro from "./formregistro/DataListRegistro";
@@ -112,20 +116,26 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   }
   return (
     <div style={{display:"flex",flexDirection:"row-reverse"}}>
-      <div style={{display:"flex",flexDirection:"column"}}>
-        <button 
+      <div style={{display:"flex",flexDirection:"column",marginTop:"5rem",gap:"20px",marginInlineEnd:"2rem"}}>
+        <BotonRegiActiv 
         id="formInicio" 
         onClick={iniciarC}
-        text="Iniciar Actividad">Iniciar Tarea</button>
-        <button 
+        text="Iniciar Actividad"
+        colores="#1097d5" ><FontAwesomeIcon icon={faPlayCircle} /></BotonRegiActiv>
+        <BotonRegiActiv 
         id="formFinal" 
         onClick={finalizarC}
-        text="Finalizar Actividad">Finalizar Tarea</button>
+        text="Finalizar Actividad" 
+        colores="#f59c10"
+        ><FontAwesomeIcon icon={faCircleStop} /></BotonRegiActiv>
       </div>
       <ConteRegistro enviar={añadirTarea}>
         <ContBloq>
           <ConSubBlo>
+            <div style={{border: "2px solid #a7a7a7",color:"#007bbd", fontSize:"1.3rem", fontWeight:"bold", padding:"3px 40px 3px 40px", borderRadius:"5px"}}>
+
             {fechaF()}
+            </div>
             {/* <LabelRegistro para="fecha" texto="Fecha Actividad" />
             <InputRegistro tipo="date" ident="formFecha" /> */}
           </ConSubBlo>
@@ -196,10 +206,10 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
         <TextareaRegistro
           placeh="Descripcion de la Actividad"
           ident="formActividad"
-          column={30}
+          column={38}
           rowst={5}
         />
-        <BotonRegiActiv tipo="submit" text="Registrar Actividad" />
+        <BotonRegiActiv tipo="submit" text="Registrar Actividad" colores="#98bf11" posicion="absolute" marge1="55rem" margen2="10rem"><FontAwesomeIcon icon={faCloudArrowUp} /></BotonRegiActiv>
       </ConteRegistro>
     </div>
   );

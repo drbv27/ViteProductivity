@@ -2,13 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const BotRegAc = styled.button`
-  background-color: #98bf11;
+  /* background-color: #98bf11; */
+
   color: white;
-  width: 20%;
   height: 40px;
   border-radius: 10px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin-left:2rem;
   cursor: pointer;
   border-bottom: 3px solid #1097d5;
@@ -19,8 +19,8 @@ const BotRegAc = styled.button`
   }
 `;
 
-const BotonRegiActiv = ({ tipo, text }) => {
-  return <BotRegAc type={tipo}>{text}</BotRegAc>;
+const BotonRegiActiv = ({ tipo, text,colores,posicion,marge1,margen2,...props }) => {
+  return <BotRegAc style={{backgroundColor:colores,position:posicion,marginInlineStart:marge1,marginBlockStart:margen2}} type={tipo}>{text} {props.children}</BotRegAc>;
 };
 
 export default BotonRegiActiv;
