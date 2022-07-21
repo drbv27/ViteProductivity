@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 
 const ConBloq = styled.div`
   display: flex;
-  gap: 30px 40px;
-  margin-left: 80px;
+  flex-direction:column;
+  margin-left: 50px;
 `;
 
 const ContBloq = (props) => {

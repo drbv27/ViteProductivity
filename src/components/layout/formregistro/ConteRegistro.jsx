@@ -7,6 +7,7 @@ const ConReg = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
+  flex-grow:1
 `;
 
 const ConteRegistro = ({ enviar, ...props }) => {

@@ -5,7 +5,7 @@ const TeArea = styled.textarea`
   border: 2px solid #a7a7a7;
   color: #000000;
   font-size: 16px;
-  margin: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0.5rem 1rem 0.5rem 4rem;
   border-radius: 5px;
 `;
 

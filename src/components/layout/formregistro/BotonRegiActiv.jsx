@@ -9,6 +9,7 @@ const BotRegAc = styled.button`
   border-radius: 10px;
   border: none;
   font-size: 1rem;
+  margin-left:2rem;
   cursor: pointer;
   border-bottom: 3px solid #1097d5;
   transition: all 0.3s;

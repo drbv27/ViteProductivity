@@ -18,6 +18,10 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   const datain = data;
 
   const [subp, setSubp] = useState("");
+
+  const [inicioC,setInicioC] = useState("")
+  const [finalC,setFinalC] = useState("")
+  
   function cambio(e) {
     e.preventDefault();
     const evento = e.target.value;
@@ -27,11 +31,46 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   }
   /* console.log(data); */
 
+  const iniciarC = ()=>{
+    const iniciar = new Date();
+    const horaI = iniciar.getHours()
+    let minutoI = iniciar.getMinutes()
+    minutoI<=9 ? minutoI=`0${minutoI}`:minutoI=minutoI
+    setInicioC(`${horaI}:${minutoI}`)
+    console.log(`${horaI}:${minutoI}`);
+    
+  }
+  const finalizarC = ()=>{
+    const finalizar = new Date();
+    const horaF = finalizar.getHours()
+    let minutoF = finalizar.getMinutes()
+    minutoF<=9 ? minutoF=`0${minutoF}`:minutoF=minutoF
+    setFinalC(`${horaF}:${minutoF}`)
+    console.log(`${horaF}:${minutoF}`);
+    
+  }
+
+  const fecha = ()=>{
+    const fechar =new Date();
+    let dia = fechar.getDate();
+    dia<=9 ? dia=`0${dia}`:dia=dia;
+    let mes = fechar.getMonth()+1;
+    mes<=9 ? mes=`0${mes}`:mes=mes;
+    const anio = fechar.getFullYear();
+    console.log(fechar)
+    console.log(`${anio}-${mes}-${dia}`)
+    return `${anio}-${mes}-${dia}`
+  }
+
   async function añadirTarea(e) {
     e.preventDefault();
     const fecha = e.target.formFecha.value;
-    const inicio = e.target.formInicio.value;
-    const final = e.target.formFinal.value;
+    /* const inicio = e.target.formInicio.value; */
+    const inicio = inicioC;
+    
+
+    /* const final = e.target.formFinal.value; */
+    const final = finalC;
     const subproceso = e.target.formSubproceso.value;
     const proceso = e.target.formProceso.value;
     const macroproceso = e.target.formMacroproceso.value;
@@ -70,22 +109,33 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
     e.target.formActividad.value = "";
   }
   return (
-    <>
+    <div style={{display:"flex",flexDirection:"row-reverse"}}>
+      <div style={{display:"flex",flexDirection:"column"}}>
+        <button 
+        id="formInicio" 
+        onClick={iniciarC}
+        text="Iniciar Actividad">Iniciar Tarea</button>
+        <button 
+        id="formFinal" 
+        onClick={finalizarC}
+        text="Finalizar Actividad">Finalizar Tarea</button>
+      </div>
       <ConteRegistro enviar={añadirTarea}>
         <ContBloq>
           <ConSubBlo>
-            <LabelRegistro para="fecha" texto="Fecha Actividad" />
-            <InputRegistro tipo="date" ident="formFecha" />
+            {fecha()}
+            {/* <LabelRegistro para="fecha" texto="Fecha Actividad" />
+            <InputRegistro tipo="date" ident="formFecha" /> */}
           </ConSubBlo>
           <ConSubBlo>
-            <LabelRegistro para="inicio" texto="Hora Inicio" />
-            <InputRegistro tipo="time" ident="formInicio" />
+            {/* <LabelRegistro para="inicio" texto="Hora Inicio" /> */}
+            {/* <InputRegistro tipo="time" ident="formInicio" /> */}
           </ConSubBlo>
         </ContBloq>
         <ContBloq>
           <ConSubBlo>
-            <LabelRegistro para="final" texto="Hora Final" />
-            <InputRegistro tipo="time" ident="formFinal" />
+            {/* <LabelRegistro para="final" texto="Hora Final" /> */}
+            {/* <InputRegistro tipo="time" ident="formFinal" /> */}
           </ConSubBlo>
           <ConSubBlo>
             <LabelRegistro para="subprocesos" texto="Ingrese Actividad" />
@@ -149,7 +199,7 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
         />
         <BotonRegiActiv tipo="submit" text="Registrar Actividad" />
       </ConteRegistro>
-    </>
+    </div>
   );
 };
 
