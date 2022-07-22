@@ -235,7 +235,7 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
           text="Registrar Actividad"
           colores="#98bf11"
           posicion="absolute"
-          marge1="70vw"
+          marge1="69.7vw"
           margen2="25vh"
         >
           <FontAwesomeIcon icon={faCloudArrowUp} />
