@@ -43,13 +43,7 @@ const Selector = ({arrayTareas}) => {
         <input type="date" id="ffinal"/>
         <input type="submit" value="filtrar" />
         </form>
-        {filtro
-        ?filtro.map((item)=>{
-            return(
-                <p>{item.fecha}-{item.actividad}-{item.macroproceso}</p>
-            )
-        })
-        :null}
+
         {filtro
         ?<h2>{filtro.filter((item)=>{
             return(
@@ -60,7 +54,7 @@ const Selector = ({arrayTareas}) => {
 
        {/*  <BarChart ingenieria={ingenieria}/> */}
         {/* <BarrasG chartData={userData}/> */}
-        <BarrasG chartData={arrayTareas}/>
+        <BarrasG chartData={filtro}/>
         {/* {console.log(ingenieria)} */}
         
     </div>
