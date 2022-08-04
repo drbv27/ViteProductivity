@@ -25,7 +25,7 @@ const {arrayTareas,correoUsuario,setArrayTareas} = useDataUser(usuario)
           <ListadoTareas arrayTareas={arrayTareas} correoUsuario={correoUsuario} setArrayTareas={setArrayTareas}/>
           
           }
-      <Selector arrayTareas={arrayTareas}/>
+     {/*  <Selector arrayTareas={arrayTareas}/> */}
     </Layout>
   );
 };

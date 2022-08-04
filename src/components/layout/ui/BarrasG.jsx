@@ -34,47 +34,47 @@ function BarChart({ chartData }) {
                     newData = [
                         {
                             macroproceso:"Gerencia",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Gerencia")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Gerencia")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Administrativo",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Administrativo")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Administrativo")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Contable",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Contable")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Contable")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Innovación",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Innovación")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Innovación")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Educación Tecnológica",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Educación Tecnológica")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Educación Tecnológica")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Jurídico",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Jurídico")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Jurídico")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Mercadeo y ventas",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Mercadeo y ventas")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Mercadeo y ventas")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Soporte",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Soporte")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Soporte")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Ingenieria",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Ingenieria")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Ingenieria")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Otro",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Otro")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Otro")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         },
                         {
                             macroproceso:"Día Festivo",
-                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Día Festivo")}).length,
+                            cantidad:chartData.filter((item)=>{return(item.macroproceso==="Día Festivo")}).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)/60,
                         }
                     ]
                 )
@@ -84,7 +84,7 @@ function BarChart({ chartData }) {
         }).then((response)=>{setUserData({
             labels: response.map((data)=>data.macroproceso),
             datasets:[{
-                label:"Actividades",
+                label:"Horas",
                 data:response.map((data)=>data.cantidad),
                 backgroundColor:["rgba(16,151,213,0.4)","rgba(129,183,31,0.4)"],
                 borderColor:["#1097d5","#81b71f"],

@@ -55,7 +55,7 @@ const Selector = ({arrayTareas}) => {
             return(
                 item.macroproceso==="Ingenieria"
             )
-        }).length}</h2>
+        }).map((item2)=>item2.total).reduce((prev,curr)=>prev+curr,0)}</h2>
         :null}
 
        {/*  <BarChart ingenieria={ingenieria}/> */}
