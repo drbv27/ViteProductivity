@@ -2,32 +2,28 @@ import './App.css'
 import React,{useState} from "react";
 import Home from './components/Home';
 import Login from './components/Login';
-import firebaseApp from '../conexion';
+/* import firebaseApp from '../conexion';
 import {getAuth,onAuthStateChanged} from "firebase/auth"
 
-const auth = getAuth(firebaseApp);
+const auth = getAuth(firebaseApp); */
+
+import useFirebaseAuth from './services/useFirebaseAuth';
 
 function App() {
-  const [usuarioGlobal,setUsuarioGlobal] = useState(null);
-  const [validacion,setValidacion] = useState(null)
+  const usuarioGlobal = useFirebaseAuth()
+  
 
-  onAuthStateChanged(auth,(usuarioFirebase)=>{
-    if(usuarioFirebase){
-      //codigo en caso de que haya sesión iniciada
-      setUsuarioGlobal(usuarioFirebase)
 
-    }else{
-      //codigo en caso de que no haya sesion iniciada
-      setUsuarioGlobal(null);
-    }
-  })
 
-  //console.log(usuarioGlobal);
+
+  console.log(usuarioGlobal);
   return (
     <>
         {usuarioGlobal ? <Home usuario={usuarioGlobal}/> : <Login />}
+        
     </>
   )
 }
 
 export default App
+

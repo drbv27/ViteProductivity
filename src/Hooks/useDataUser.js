@@ -9,6 +9,7 @@ const useDataUser = (usuario)=>{
     const [arrayTareas,setArrayTareas] = useState(null);
 
     const correoUsuario = usuario.email;
+    console.log("correo usuario",correoUsuario)
     /* console.log(usuario.email); */
     const fakeData = [
       {id:1,fecha:"Lunes",inicio:"8:00am",final:"9:00am" ,subproceso:"ventas",proceso:"planeación",macroproceso:"gerencia",actividad:"reunión",total:"1h"},{id:2,fecha:"Lunes",inicio:"9:00am",final:"10:00am" ,subproceso:"guias",proceso:"planeación",macroproceso:"educacion",actividad:"elabora guias",total:"1h"},{id:3,fecha:"Lunes",inicio:"10:00am",final:"11:00am" ,subproceso:"inventario",proceso:"almacen",macroproceso:"ingenieria",actividad:"conteo",total:"1h"},]
@@ -38,7 +39,7 @@ const useDataUser = (usuario)=>{
         setArrayTareas(tareasFetchadas);
       }
       fetchTareas();
-      },[]);
+      },[correoUsuario]);
     return {
         arrayTareas,correoUsuario,setArrayTareas
     }

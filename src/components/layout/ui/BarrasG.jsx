@@ -94,7 +94,7 @@ function BarChart({ chartData }) {
         })})
     },[chartData])
 
-    console.log(userData);
+    /* console.log(userData); */
   return <Bar data={userData} />;
 }
 

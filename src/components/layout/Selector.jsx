@@ -61,7 +61,7 @@ const Selector = ({arrayTareas}) => {
        {/*  <BarChart ingenieria={ingenieria}/> */}
         {/* <BarrasG chartData={userData}/> */}
         <BarrasG chartData={arrayTareas}/>
-        {console.log(ingenieria)}
+        {/* {console.log(ingenieria)} */}
         
     </div>
   )

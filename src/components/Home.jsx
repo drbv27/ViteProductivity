@@ -13,7 +13,6 @@ import useDataUser from "../Hooks/useDataUser";
 const firestore = getFirestore(firebaseApp);
 
 
-
 const Home = ({ usuario }) => {
 
 const {arrayTareas,correoUsuario,setArrayTareas} = useDataUser(usuario)
