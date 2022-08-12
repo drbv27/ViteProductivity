@@ -38,6 +38,10 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   }
   /* console.log(data); */
 
+  const pruebaC = ()=>{
+    console.log("probando funcion");
+  }
+
   const iniciarC = () => {
     const iniciar = new Date();
     const horaI = iniciar.getHours();
@@ -127,7 +131,7 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
       >
         <BotonRegiActiv
           id="formInicio"
-          onClick={iniciarC}
+          fonClick={iniciarC}
           text="Iniciar Actividad"
           colores="#1097d5"
         >
@@ -135,7 +139,7 @@ const FormRegistro = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
         </BotonRegiActiv>
         <BotonRegiActiv
           id="formFinal"
-          onClick={finalizarC}
+          fonClick={finalizarC}
           text="Finalizar Actividad"
           colores="#f59c10"
         >

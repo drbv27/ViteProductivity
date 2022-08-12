@@ -19,8 +19,8 @@ const BotRegAc = styled.button`
   }
 `;
 
-const BotonRegiActiv = ({ tipo, text,colores,posicion,marge1,margen2,...props }) => {
-  return <BotRegAc style={{backgroundColor:colores,position:posicion,marginInlineStart:marge1,marginBlockStart:margen2}} type={tipo}>{text} {props.children}</BotRegAc>;
+const BotonRegiActiv = ({ tipo, text,colores,posicion,marge1,margen2,fonClick,...props }) => {
+  return <BotRegAc style={{backgroundColor:colores,position:posicion,marginInlineStart:marge1,marginBlockStart:margen2}} type={tipo} onClick={fonClick}>{text} {props.children}</BotRegAc>;
 };
 
 export default BotonRegiActiv;
