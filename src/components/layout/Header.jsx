@@ -9,7 +9,7 @@ const auth = getAuth(firebaseApp);
 const Cabecera = styled.div`
   padding-left:7px;
   padding-right:7px;
-  margin-left: 15vw;
+  margin-left: 14vw;
   height: 40px;
   background-color: #81b71f;
   display: flex;

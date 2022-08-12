@@ -7,7 +7,7 @@ import { faChartArea, faHouse } from "@fortawesome/free-solid-svg-icons";
 const Contenedor = styled.div`
   background-color: #1097d5;
   position: fixed;
-  width: 15vw;
+  width: 14vw;
   height: 100%;
   color:white;
   font-weight:bold;
@@ -36,7 +36,7 @@ const Navbar = ({usuario}) => {
   return (
     <>
       <Contenedor>
-        <h2 className="titu">Barra Lateral</h2>
+        <h2 className="titu">Menú Opciones</h2>
 
         <ul>
           <li>
